@@ -16,6 +16,7 @@ int main()
     {
         cout << "Enter command (add/print/copmlete/delete): ";
         getline(cin, command);
+        //Æîïà
 
         if (command == "add")
         {
