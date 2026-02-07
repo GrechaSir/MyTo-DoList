@@ -1,0 +1,9 @@
+diff a/MyTo-DoList/MyTo-DoList.cpp b/MyTo-DoList/MyTo-DoList.cpp	(rejected hunks)
+@@ -17,6 +17,7 @@
+         cout << "Enter command (add/print/copmlete/delete): ";
+         getline(cin, command);
+         //����
++        //KAIFI!!!
+ 
+         if (command == "add")
+         {

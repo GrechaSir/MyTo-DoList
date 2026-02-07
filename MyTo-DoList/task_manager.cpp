@@ -1,6 +1,7 @@
 ﻿#include "task_manager.h"
 #include <iostream>
 
+//Метод поиска индекса задачи по ее номеру
 int TaskManager::findTaskIndex(int taskId) const
 {
 	for (int i = 0; i < tasks.size(); i++)
@@ -9,77 +10,74 @@ int TaskManager::findTaskIndex(int taskId) const
 			return i;
 	}
 
-	if (taskId == 0)
-		return 0;
-
 	return -1;
 }
 
+//Метод, который отмечает выполнение задачи
 void TaskManager::markComplete(int taskId)
 {
 	int taskIndex = findTaskIndex(taskId);
 
-	if (taskIndex == 0)
-	{
-		cout << "Task number is incorrect.\n";
-		return;
-	}
-
 	//Вараинт, если нет задачи с таким индексом
 	if (taskIndex == -1)
 	{
-		cout << "Task with that number is empty.\n";
+		cout << "Задачи номер "<< taskId <<" не существует.\n";
 		return;
 	}
 	//Вариант, если задача уже выполнена
 	if (tasks[taskIndex].completed == true)
 	{
-		cout << "That task has been copmleted before.\n";
+		cout << "Задача номер " << taskId << " уже была выполнена.\n";
 		return;
 	}
 	//Отмечаем задачу как выполненную
 	tasks[taskIndex].completed = true;
-	cout << "Task number " << taskId << " completed.\n";
+	cout << "Задача номер " << taskId << " выполнена.\n";
+
+	this->printAllTasks();
+
 	return;
 }
 
+//Метод добавляющий задачу
 void TaskManager::addTask(const string& title)
 {
 	//Проверяем, написал ли пользователь задачу перед вводом
 	if (title.empty())
 	{
-		cout << "Task is empty.\n";
+		cout << "Задача не была написана.\n";
 		return;
 	}
 	//Создаем объект newTask, в который положим информацию о новой задаче
 	Task newTask;
 	newTask.id = nextId++;		//Номер задачи
-	newTask.title = title;		//Задача
+	newTask.title = title;		//Заголовок задачи
 	newTask.completed = false;	//Статус выполнения
 
-	tasks.push_back(newTask);	//Добавляем новую задачу в список всех задач
+	tasks.push_back(newTask);	//Добавление новой задачи в конец списка
 
-	cout << "Task added (ID: " << newTask.id << ")\n";
+	cout << "Задача добавлена (ID: " << newTask.id << ")\n";
 
 	return;
 }
 
+//Метод выводящий весь список задач
 void TaskManager::printAllTasks() const
 {
 	//Проверяем, есть ли уже задачи
 	if (tasks.empty())
 	{
-		cout << "List is empty.\n";
+		cout << "Список задач пуст.\n";
 		return;
 	}
 
 	//Вывод всех задач на экран
-	cout << "\n=== Tasks list ===\n";
+	cout << "\n=== Список задач ===\n";
 	for (const auto& task : tasks)
 	{
 		//
 		if (task.completed)
-			cout << "[*] ";
+			cout << "[X] ";
 		else
 			cout << "[ ] ";
 		
@@ -90,6 +88,7 @@ void TaskManager::printAllTasks() const
 	cout << "==================\n";
 }
 
+//Метод удаляющий задачу
 void TaskManager::removeTask(int taskId)
 {
 	int taskIndex = findTaskIndex(taskId);
@@ -97,18 +96,20 @@ void TaskManager::removeTask(int taskId)
 	//Проверяем, есть ли задача, которую хотим удалить
 	if (taskIndex == -1)
 	{
-		cout << "Task with that number is empty.\n";
+		cout << "Задача номер " << taskId << " не существует.\n";
 		return;
 	}
 
-	//Удаляем задачу
+	//Удаление задачи по индексу
 	tasks.erase(tasks.begin() + taskIndex);
-	cout << "Task number " << taskId << " has been removed.\n";
+	cout << "Задача номер " << taskId << " удалена.\n";
 
 	nextId--;
 
 	for (int i = 0; i < tasks.size(); i++)
 		tasks[i].id = i + 1;
+
+	this->printAllTasks();
 
 	return;
 }

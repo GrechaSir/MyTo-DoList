@@ -1,52 +1,75 @@
-// MyTo-DoList.cpp : ��� 䠩� ᮤ�ন� �㭪�� "main". ����� ��稭����� � �����稢����� �믮������ �ணࠬ��.
-//
+﻿//Файл main
+//Турбо ура!
 
 #include <iostream>
 #include "task_manager.h"
 
+struct Command
+{
+    string name;
+    string task;
+    string stringId;
+    bool complete;
+};
+
 int main()
 {
-    string command;
+    system("chcp 1251");
+    Command cmd;
     TaskManager myList;
-    int taskId;
+    string command;
+    bool isName = false;
 
-    cout << "Welcome to To-DoList!\n";
+    cout << "Ты пидр, еп!\n";
 
     while (1)
     {
-        cout << "Enter command (add/print/copmlete/delete): ";
+        cout << "\nВведите команду (help - список доступных команд): ";
         getline(cin, command);
-        //����
-        //KAIFI!!!
 
-        if (command == "add")
+        //Обработка введенной команды
+        for (const auto& letter : command)
         {
-            string task;
-            cout << "Enter task: ";
-            getline(cin, task);
-            myList.addTask(task);
+            if (letter != ' ' && !isName)
+            {
+                cmd.name += letter;
+            }
+            else if (letter == ' ')
+            {
+                isName = true;
+                continue;
+            }
+            
+            if ((cmd.name == "add" || cmd.name == "help") && isName)
+                cmd.task += letter;
+            else if ((cmd.name == "complete" || cmd.name == "remove") && isName)
+                cmd.stringId += letter;
         }
-        else if (command == "print")
-        {
+
+
+        //Выполнение каждой из команд
+        if (cmd.name == "add")
+            myList.addTask(cmd.task);
+        else if (cmd.name == "complete")
+            myList.markComplete(stoi(cmd.stringId));
+        else if (cmd.name == "remove")
+            myList.removeTask(stoi(cmd.stringId));
+        else if (cmd.name == "list")
             myList.printAllTasks();
-        }
-        else if (command == "complete")
+        else if (cmd.name == "help")
         {
-            cout << "Mark a task has been completed: ";
-            cin >> taskId;
-            myList.markComplete(taskId);
-        }
-        else if (command == "delete")
-        {
-            cout << "Enter task number that will be removed: ";
-            cin >> taskId;
-            myList.removeTask(taskId);
+            cout << "Список доступных команд:\n";
+            cout << "add \"Заголовок задачи\" - Добавить задачу;\n";
+            cout << "list - Вывести список всех задач;\n";
+            cout << "complete \"Номер задачи\" - Отметить задачу как выполненную;\n";
+            cout << "remove \"Номер задачи\" - Удалить задачу.\n";
         }
         else
-        {
-            cout << "Incorrect command.\n";
-        }
+            cout << "Некорректная команда.\n";
 
+        //Очистка буффера
+        cmd = {};
+        isName = false;
     }
 }
 
