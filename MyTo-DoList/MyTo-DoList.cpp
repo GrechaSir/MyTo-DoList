@@ -1,50 +1,80 @@
-// MyTo-DoList.cpp : ��� 䠩� ᮤ�ন� �㭪�� "main". ����� ��稭����� � �����稢����� �믮������ �ணࠬ��.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include "task_manager.h"
+
+struct Command
+{
+    string nameCommand;
+    string task;
+    string stringId;
+    string file;
+    bool complete;
+};
 
 int main()
 {
-    string command;
+    system("chcp 1251");
+    Command cmd;
     TaskManager myList;
-    int taskId;
+    string command;
+    bool isName = false;
 
-    cout << "Welcome to To-DoList!\n";
+    cout << "Добро пожаловать в To-Do List!\n";
 
     while (1)
     {
-        cout << "Enter command (add/print/copmlete/delete): ";
+        cout << "\nВведите команду (help - список доступных команд): ";
         getline(cin, command);
 
-        if (command == "add")
+        //Обработка введенной команды
+        for (const auto& letter : command)
         {
-            string task;
-            cout << "Enter task: ";
-            cin >> task;
-            myList.addTask(task);
-        }
-        else if (command == "print")
-        {
-            myList.printAllTasks();
-        }
-        else if (command == "complete")
-        {
-            cout << "Mark a task has been completed: ";
-            cin >> taskId;
-            myList.markComplete(taskId);
-        }
-        else if (command == "delete")
-        {
-            cout << "Enter task number that will be removed: ";
-            cin >> taskId;
-            myList.removeTask(taskId);
-        }
-        else
-        {
-            cout << "Incorrect command.\n";
+            if (letter != ' ' && !isName)
+            {
+                cmd.nameCommand += letter;
+            }
+            else if (letter == ' ' && !isName)
+            {
+                isName = true;
+                continue;
+            }
+
+            if ((cmd.nameCommand == "add" || cmd.nameCommand == "help") && isName)
+                cmd.task += letter;
+            else if ((cmd.nameCommand == "save" || cmd.nameCommand == "load") && isName)
+                cmd.file += letter;
+            else if ((cmd.nameCommand == "complete" || cmd.nameCommand == "remove" || cmd.nameCommand == "edit") && isName)
+                cmd.stringId += letter;
         }
 
+        //Выполнение каждой из команд
+        if (cmd.nameCommand == "add")
+            myList.addTask(cmd.task);
+        else if (cmd.nameCommand == "complete")
+            myList.markComplete(atoll(cmd.stringId.c_str()));
+        else if (cmd.nameCommand == "remove")
+            myList.removeTask(atoll(cmd.stringId.c_str()));
+        else if (cmd.nameCommand == "list")
+            myList.printAllTasks();
+        else if (cmd.nameCommand == "help")
+        {
+            cout << "Список доступных команд:\n";
+            cout << "add \"Заголовок задачи\" - Добавить задачу;\n";
+            cout << "list - Вывести список всех задач;\n";
+            cout << "complete \"Номер задачи\" - Отметить задачу как выполненную;\n";
+            cout << "remove \"Номер задачи\" - Удалить задачу.\n";
+        }
+        else if (cmd.nameCommand == "save")
+            myList.saveList(cmd.file);
+        else if (cmd.nameCommand == "load")
+            myList.loadList(cmd.file);
+        else if (cmd.nameCommand == "edit")
+            myList.editTask(atoll(cmd.stringId.c_str()));
+        else
+            cout << "Некорректная команда.\n";
+
+        //Очистка буффера
+        cmd = {};
+        isName = false;
     }
 }
 

@@ -1,4 +1,4 @@
-//#pragma once
+﻿#pragma once
 
 #include <vector>
 #include "task.h"
@@ -15,4 +15,8 @@ public:
 	void markComplete(int taskId);
 	void printAllTasks() const;
 	void removeTask(int taskId);
+	void editTask(const int taskId);
+
+	void saveList(const string nameFile);
+	void loadList(const string nameFile);
 };

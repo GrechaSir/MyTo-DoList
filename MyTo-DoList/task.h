@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <string>
 
@@ -10,4 +10,3 @@ struct Task
     string title;
     bool completed;
 };
-
