@@ -17,6 +17,18 @@ int TaskManager::findTaskIndex(int taskId) const
 	return -1;
 }
 
+//Меод перевода всех букв в нижний регистр
+string TaskManager::toLower(string message)
+{
+	for (int i = 0; i < message.size(); i++)
+	{
+		if (message[i] > 'A' && message[i] < 'Z') message[i] += 'z' - 'Z';
+		if (message[i] > 'А' && message[i] < 'Я') message[i] += 'я' - 'Я';
+	}
+
+	return message;
+}
+
 //Метод, который отмечает выполнение задачи
 void TaskManager::markComplete(int taskId)
 {
@@ -45,7 +57,7 @@ void TaskManager::markComplete(int taskId)
 	tasks[taskIndex].completed = true;
 	cout << "Задача номер " << taskId << " выполнена.\n";
 
-	this->printAllTasks();
+	this->printTasks("all");
 
 	return;
 }
@@ -69,22 +81,52 @@ void TaskManager::addTask(const string& title)
 
 	cout << "Задача добавлена (ID: " << newTask.id << ")\n";
 
+	this->printTasks("all");
+
 	return;
 }
 
 //Метод выводящий весь список задач
-void TaskManager::printAllTasks() const
+void TaskManager::findTask(const string& word)
 {
-	//Проверяем, есть ли уже задачи
+	string lowWord;
+	string lowTask;
+
+	wordFindTasks.clear();
+
+	//Проверяем, есть вообще задачи
 	if (tasks.empty())
 	{
 		cout << "Список задач пуст.\n";
 		return;
 	}
 
-	//Вывод всех задач на экран
-	cout << "\n=== Список задач ===\n";
+	//Сортируем в соответствии со статусом
 	for (const auto& task : tasks)
+	{
+		lowWord = this->toLower(word);
+		lowTask = this->toLower(task.title);
+		if (lowTask.find(lowWord) != std::string::npos)
+			wordFindTasks.push_back(task);
+	}
+
+	//Если структура не заполнена, значит поиск по слову не нашел подходящих задач
+	if (wordFindTasks.empty())
+	{
+		cout << "Результаты не найдены.\n";
+		return;
+	}
+
+	//МОЖНО ВЕРНУТЬ, ЧТОБЫ ПРИ СОРТИРОВКЕ ПО СЛОВУ НУМЕРАЦИЯ БЫЛА С ЕДИНИЦЫ. НО ЭТО КАК БУДТО НЕУДОБНО ДЛЯ ПОЛЬЗОВАТЕЛЯ
+	////Выравниваем нумерацию при выводе задач
+	//for (int i = 0; i < wordFindTasks.size(); i++)
+	//{
+	//	statusTasks[i].id = i + 1;
+	//}
+
+	//Вывод всех задач найденный по слову на экран
+	cout << "\n=== Список задач ===\n";
+	for (const auto& task : wordFindTasks)
 	{
 		//
 		if (task.completed)
@@ -97,6 +139,105 @@ void TaskManager::printAllTasks() const
 		cout << task.title << endl;
 	}
 	cout << "==================\n";
+
+	return;
+}
+
+//Метод выводящий весь список задач
+void TaskManager::printTasks(const string& status)
+{
+	statusTasks.clear();
+
+	//Проверяем, есть вообще задачи
+	if (tasks.empty())
+	{
+		cout << "Список задач пуст.\n";
+		return;
+	}
+
+	//Сортируем в соответствии со статусом
+	for (const auto& task : tasks)
+	{
+		if (status == "all" || (status == "completed" && task.completed))
+			statusTasks.push_back(task);
+		else if (status == "all" || (status == "active" && !task.completed))
+			statusTasks.push_back(task);
+	}
+
+	//Проверяем, есть вообще задачи
+	if (statusTasks.empty() && status != "all")
+	{
+		if (status == "completed" || status == "active")
+			cout << "Нет задач со статусом " + status + ".\n";
+		else
+			cout << "Некорректная команда.\n";
+		return;
+	}
+
+	//Выравниваем нумерацию при выводе задач
+	for (int i = 0; i < statusTasks.size(); i++)
+	{
+		statusTasks[i].id = i + 1;
+	}
+
+	//Вывод всех задач на экран
+	cout << "\n=== Список задач ===\n";
+	for (const auto& task : statusTasks)
+	{
+		//
+		if (task.completed)
+			cout << "[X] ";
+		else
+			cout << "[ ] ";
+
+		cout << task.id << ". ";
+
+		cout << task.title << endl;
+	}
+	cout << "==================\n";
+
+	return;
+}
+
+//Метод удаляющий список или выполненный задачи списка
+void TaskManager::clearTask(const string& status)
+{
+	//Проверяем, есть вообще задачи
+	if (tasks.empty())
+	{
+		cout << "Список задач пуст.\n";
+		return;
+	}
+
+	if (status != "completed" && status != "")
+	{
+		cout << "Некорректная команда.\n";
+		return;
+	}
+
+	for (int i = 0; i < tasks.size(); )
+	{
+
+		if (status == "completed" && tasks[i].completed == true)
+		{
+			this->removeTask(i + 1);
+			//tasks.erase(tasks.begin() + i);
+			//nextId--;
+		}
+		else if (status == "")
+		{
+			tasks.clear();
+			nextId = 1;
+		}
+		else
+			i++;
+	}
+
+	cout << "Список очищен.\n";
+
+	this->printTasks("all");
+
+	return;
 }
 
 //Метод удаляющий задачу
@@ -127,8 +268,6 @@ void TaskManager::removeTask(int taskId)
 	for (int i = 0; i < tasks.size(); i++)
 		tasks[i].id = i + 1;
 
-	this->printAllTasks();
-
 	return;
 }
 
@@ -138,8 +277,12 @@ void TaskManager::editTask(const int taskId)
 	int taskIndex = findTaskIndex(taskId);
 
 	cout << "Задачу номер " << taskId << " можно изменить.\n";
+	getline(cin, tasks[taskIndex].title);
+	cout << "Задачу номер " << taskId << " изменена.\n";
 
-	cout << tasks[taskIndex].title;
+	this->printTasks("all");
+
+	return;
 }
 
 //Метод сохраняющий список задач

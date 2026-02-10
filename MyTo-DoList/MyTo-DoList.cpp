@@ -7,6 +7,7 @@ struct Command
     string task;
     string stringId;
     string file;
+    string status;
     bool complete;
 };
 
@@ -38,10 +39,12 @@ int main()
                 continue;
             }
 
-            if ((cmd.nameCommand == "add" || cmd.nameCommand == "help") && isName)
+            if ((cmd.nameCommand == "add" || cmd.nameCommand == "find" || cmd.nameCommand == "close") && isName)
                 cmd.task += letter;
             else if ((cmd.nameCommand == "save" || cmd.nameCommand == "load") && isName)
                 cmd.file += letter;
+            else if ((cmd.nameCommand == "list" || cmd.nameCommand == "clear") && isName)
+                cmd.status += letter;
             else if ((cmd.nameCommand == "complete" || cmd.nameCommand == "remove" || cmd.nameCommand == "edit") && isName)
                 cmd.stringId += letter;
         }
@@ -49,19 +52,32 @@ int main()
         //Выполнение каждой из команд
         if (cmd.nameCommand == "add")
             myList.addTask(cmd.task);
+        else if (cmd.nameCommand == "find")
+            myList.findTask(cmd.task);
         else if (cmd.nameCommand == "complete")
             myList.markComplete(atoll(cmd.stringId.c_str()));
+        else if (cmd.nameCommand == "clear")
+            myList.clearTask(cmd.status);
         else if (cmd.nameCommand == "remove")
             myList.removeTask(atoll(cmd.stringId.c_str()));
         else if (cmd.nameCommand == "list")
-            myList.printAllTasks();
+            myList.printTasks(cmd.status);
         else if (cmd.nameCommand == "help")
         {
             cout << "Список доступных команд:\n";
             cout << "add \"Заголовок задачи\" - Добавить задачу;\n";
-            cout << "list - Вывести список всех задач;\n";
             cout << "complete \"Номер задачи\" - Отметить задачу как выполненную;\n";
+            cout << "edit \"Номер задачи\" - Изменить задачу.\n";
+            cout << "save \"Имя файла\" - Сохранинить список;\n";
+            cout << "load \"Имя файла\" - Загрузить список;\n";
+            cout << "find \"Слово\" - Поиск задач по слову;\n";
+            cout << "list all - Показать весь список;\n";
+            cout << "list completed - Показать только выполненные задачи;\n";
+            cout << "list active - Показать активные задачи;\n";
             cout << "remove \"Номер задачи\" - Удалить задачу.\n";
+            cout << "clear - Удалить весь список.\n";
+            cout << "clear completed - Удалить только выполненные задачи.\n";
+            cout << "close - Закрыть приложение.\n";
         }
         else if (cmd.nameCommand == "save")
             myList.saveList(cmd.file);
@@ -69,6 +85,8 @@ int main()
             myList.loadList(cmd.file);
         else if (cmd.nameCommand == "edit")
             myList.editTask(atoll(cmd.stringId.c_str()));
+        else if (cmd.nameCommand == "close")
+            return 0;
         else
             cout << "Некорректная команда.\n";
 

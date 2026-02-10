@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\task_manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\task_manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,26 +30,26 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "task_manager.h",
               "DocumentMoniker": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.h",
               "RelativeDocumentMoniker": "MyTo-DoList\\task_manager.h",
               "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.h",
               "RelativeToolTip": "MyTo-DoList\\task_manager.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-02-09T16:45:10.784Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "task.h",
               "DocumentMoniker": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task.h",
               "RelativeDocumentMoniker": "MyTo-DoList\\task.h",
               "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task.h",
               "RelativeToolTip": "MyTo-DoList\\task.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-02-09T16:45:09.1Z",
               "EditorCaption": ""
@@ -62,7 +62,7 @@
               "RelativeDocumentMoniker": "MyTo-DoList\\task_manager.cpp",
               "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.cpp",
               "RelativeToolTip": "MyTo-DoList\\task_manager.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAiwFYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-09T16:44:13.855Z",
               "EditorCaption": ""
@@ -75,7 +75,7 @@
               "RelativeDocumentMoniker": "MyTo-DoList\\MyTo-DoList.cpp",
               "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\MyTo-DoList.cpp",
               "RelativeToolTip": "MyTo-DoList\\MyTo-DoList.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAiwDYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-09T16:43:09.364Z",
               "EditorCaption": ""
