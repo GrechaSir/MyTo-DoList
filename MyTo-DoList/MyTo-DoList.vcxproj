@@ -124,9 +124,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MyTo-DoList.cpp" />
+    <ClCompile Include="parsing.cpp" />
     <ClCompile Include="task_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="parsing.h" />
     <ClInclude Include="task.h" />
     <ClInclude Include="task_manager.h" />
   </ItemGroup>

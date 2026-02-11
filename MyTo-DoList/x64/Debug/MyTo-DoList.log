@@ -1,5 +1,7 @@
 ﻿  MyTo-DoList.cpp
-C:\Users\HYPERPC\source\repos\GrechaSir\MyTo-DoList\MyTo-DoList\MyTo-DoList.cpp(58,38): warning C4244: аргумент: преобразование "__int64" в "int", возможна потеря данных
-C:\Users\HYPERPC\source\repos\GrechaSir\MyTo-DoList\MyTo-DoList\MyTo-DoList.cpp(62,36): warning C4244: аргумент: преобразование "__int64" в "int", возможна потеря данных
-C:\Users\HYPERPC\source\repos\GrechaSir\MyTo-DoList\MyTo-DoList\MyTo-DoList.cpp(87,34): warning C4244: аргумент: преобразование "__int64" в "const int", возможна потеря данных
+C:\Users\HYPERPC\source\repos\GrechaSir\MyTo-DoList\MyTo-DoList\MyTo-DoList.cpp(61,38): warning C4244: аргумент: преобразование "__int64" в "const int", возможна потеря данных
+C:\Users\HYPERPC\source\repos\GrechaSir\MyTo-DoList\MyTo-DoList\MyTo-DoList.cpp(65,36): warning C4244: аргумент: преобразование "__int64" в "const int", возможна потеря данных
+C:\Users\HYPERPC\source\repos\GrechaSir\MyTo-DoList\MyTo-DoList\MyTo-DoList.cpp(90,34): warning C4244: аргумент: преобразование "__int64" в "const int", возможна потеря данных
+  task_manager.cpp
+  Создание кода...
   MyTo-DoList.vcxproj -> C:\Users\HYPERPC\source\repos\GrechaSir\MyTo-DoList\x64\Debug\MyTo-DoList.exe

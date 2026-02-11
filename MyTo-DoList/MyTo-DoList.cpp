@@ -1,53 +1,56 @@
-﻿#include <iostream>
-#include "task_manager.h"
+﻿/*------------------------------------------------------------------------------
+        Заголовки
+-------------------------------------------------------------------------------*/
+#include <iostream>
+#include "parsing.h"
 
-struct Command
-{
-    string nameCommand;
-    string task;
-    string stringId;
-    string file;
-    string status;
-    bool complete;
-};
+/*------------------------------------------------------------------------------
+        Локальные определения
+-------------------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------------------
+        Глобальные переменные
+-------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------
+        Внешние переменные
+-------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------
+        Локальные переменные
+-------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------
+        Локальные функции (объявления)
+-------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------
+        Локальные функции (реализация)
+-------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------
+        Глобальные функции
+-------------------------------------------------------------------------------*/
 int main()
 {
     system("chcp 1251");
-    Command cmd;
     TaskManager myList;
+    Command cmd;
     string command;
-    bool isName = false;
 
     cout << "Добро пожаловать в To-Do List!\n";
+
+    myList.loadList(AUTO_SAVE_NAME_FILE);
 
     while (1)
     {
         cout << "\nВведите команду (help - список доступных команд): ";
+
+        //Ввод команды
         getline(cin, command);
 
-        //Обработка введенной команды
-        for (const auto& letter : command)
-        {
-            if (letter != ' ' && !isName)
-            {
-                cmd.nameCommand += letter;
-            }
-            else if (letter == ' ' && !isName)
-            {
-                isName = true;
-                continue;
-            }
-
-            if ((cmd.nameCommand == "add" || cmd.nameCommand == "find" || cmd.nameCommand == "close") && isName)
-                cmd.task += letter;
-            else if ((cmd.nameCommand == "save" || cmd.nameCommand == "load") && isName)
-                cmd.file += letter;
-            else if ((cmd.nameCommand == "list" || cmd.nameCommand == "clear") && isName)
-                cmd.status += letter;
-            else if ((cmd.nameCommand == "complete" || cmd.nameCommand == "remove" || cmd.nameCommand == "edit") && isName)
-                cmd.stringId += letter;
-        }
+        //Функция парсинга введенной строки
+        cmd = parsingInputCmd(command);
 
         //Выполнение каждой из команд
         if (cmd.nameCommand == "add")
@@ -64,8 +67,8 @@ int main()
             myList.printTasks(cmd.status);
         else if (cmd.nameCommand == "help")
         {
-            cout << "Список доступных команд:\n";
-            cout << "add \"Заголовок задачи\" - Добавить задачу;\n";
+            cout << "\nСписок доступных команд:\n";
+            cout << "add \"Заголовок задачи\" --priority=high/middle/low - Добавить задачу и ее приоритет;\n";
             cout << "complete \"Номер задачи\" - Отметить задачу как выполненную;\n";
             cout << "edit \"Номер задачи\" - Изменить задачу.\n";
             cout << "save \"Имя файла\" - Сохранинить список;\n";
@@ -86,13 +89,14 @@ int main()
         else if (cmd.nameCommand == "edit")
             myList.editTask(atoll(cmd.stringId.c_str()));
         else if (cmd.nameCommand == "close")
+        {
+            myList.saveList(AUTO_SAVE_NAME_FILE);
             return 0;
+        }
         else
             cout << "Некорректная команда.\n";
 
         //Очистка буффера
         cmd = {};
-        isName = false;
     }
 }
-
