@@ -1,13 +1,13 @@
-#pragma once
+п»ї#pragma once
 
 /*-----------------------------------------------------------------------------
-			Заголовки
+			Р—Р°РіРѕР»РѕРІРєРё
 -----------------------------------------------------------------------------*/
 #include <vector>
-#include "task.h"
+#include "parsing.h"
 
 /*-----------------------------------------------------------------------------
-			Типы
+			РўРёРїС‹
 -----------------------------------------------------------------------------*/
 class TaskManager
 {
@@ -21,31 +21,32 @@ public:
 	string toLower(string message);
 
 	int findTaskIndex(const int& taskId) const;
-	Priority stringToPriority(const string& priorityStr) const;
+	//	Priority stringToPriority(const string& priorityStr) const;
 	string priorityToString(Priority priority) const;
-	Priority findPriority(string& input);
+	//	Priority findPriority(string& input);
+	void sortPriority(vector<Task>& list);
 
 	void markComplete(const int& taskId);
-	void addTask(string& title);
+	void addTask(string& title, Priority& priority);
 	void findTask(const string& word);
 	void printTasks(const string& status);
 	void removeTask(const int& taskId);
 	void clearTask(const string& status);
-	void editTask(const int& taskId);
+	void editTask(const int& taskId, const string& title, const Priority& priority);
 
 	void saveList(const string& nameFile);
 	void loadList(const string& nameFile);
 };
 
 /*-----------------------------------------------------------------------------
-			Определения
+			РћРїСЂРµРґРµР»РµРЅРёСЏ
 -----------------------------------------------------------------------------*/
 #define AUTO_SAVE_NAME_FILE "autoSave"
 
 /*-----------------------------------------------------------------------------
-			Внешние переменные
+			Р’РЅРµС€РЅРёРµ РїРµСЂРµРјРµРЅРЅС‹Рµ
 -----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-			Глобальные функции
+			Р“Р»РѕР±Р°Р»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё
 -----------------------------------------------------------------------------*/

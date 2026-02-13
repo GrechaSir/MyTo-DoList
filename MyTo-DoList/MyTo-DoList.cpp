@@ -2,7 +2,7 @@
         Заголовки
 -------------------------------------------------------------------------------*/
 #include <iostream>
-#include "parsing.h"
+#include "task_manager.h"
 
 /*------------------------------------------------------------------------------
         Локальные определения
@@ -54,29 +54,30 @@ int main()
 
         //Выполнение каждой из команд
         if (cmd.nameCommand == "add")
-            myList.addTask(cmd.task);
+            myList.addTask(cmd.task, cmd.priority);
         else if (cmd.nameCommand == "find")
             myList.findTask(cmd.task);
         else if (cmd.nameCommand == "complete")
             myList.markComplete(atoll(cmd.stringId.c_str()));
         else if (cmd.nameCommand == "clear")
-            myList.clearTask(cmd.status);
+            myList.clearTask(cmd.filter);
         else if (cmd.nameCommand == "remove")
             myList.removeTask(atoll(cmd.stringId.c_str()));
         else if (cmd.nameCommand == "list")
-            myList.printTasks(cmd.status);
+            myList.printTasks(cmd.filter);
         else if (cmd.nameCommand == "help")
         {
             cout << "\nСписок доступных команд:\n";
             cout << "add \"Заголовок задачи\" --priority=high/middle/low - Добавить задачу и ее приоритет;\n";
             cout << "complete \"Номер задачи\" - Отметить задачу как выполненную;\n";
-            cout << "edit \"Номер задачи\" - Изменить задачу.\n";
+            cout << "edit \"Номер задачи\" \"Заголовок задачи\" --priority=high/middle/low - Изменить задачу и ее приоритет.\n";
             cout << "save \"Имя файла\" - Сохранинить список;\n";
             cout << "load \"Имя файла\" - Загрузить список;\n";
             cout << "find \"Слово\" - Поиск задач по слову;\n";
             cout << "list all - Показать весь список;\n";
-            cout << "list completed - Показать только выполненные задачи;\n";
-            cout << "list active - Показать активные задачи;\n";
+            cout << "list completed - Показать список выполненных задач;\n";
+            cout << "list active - Показать список активных задач;\n";
+            cout << "list priority - Показать список задач отсортированный по приоритету;\n";
             cout << "remove \"Номер задачи\" - Удалить задачу.\n";
             cout << "clear - Удалить весь список.\n";
             cout << "clear completed - Удалить только выполненные задачи.\n";
@@ -87,7 +88,7 @@ int main()
         else if (cmd.nameCommand == "load")
             myList.loadList(cmd.file);
         else if (cmd.nameCommand == "edit")
-            myList.editTask(atoll(cmd.stringId.c_str()));
+            myList.editTask(atoll(cmd.stringId.c_str()), cmd.task, cmd.priority);
         else if (cmd.nameCommand == "close")
         {
             myList.saveList(AUTO_SAVE_NAME_FILE);

@@ -59,71 +59,38 @@ int TaskManager::findTaskIndex(const int& taskId) const
 	return -1;
 }
 
-//Метод для преобразования строки в приоритет
-Priority TaskManager::stringToPriority(const string& priorityStr) const 
+//Сортировка по приоритету
+void TaskManager::sortPriority(vector<Task>& list)
 {
-	string lowerStr = priorityStr;
-
-	if (lowerStr == "low" || lowerStr == "низкий" || lowerStr == "л") {
-		return Priority::LOW;
-	}
-	else if (lowerStr == "middle" || lowerStr == "средний" || lowerStr == "ср" || lowerStr == "с") {
-		return Priority::MEDIUM;
-	}
-	else if (lowerStr == "high" || lowerStr == "высокий" || lowerStr == "в") {
-		return Priority::HIGH;
-	}
-	else if (lowerStr == "none" || lowerStr == "нет" || priorityStr.empty()) {
-		return Priority::NONE;
-	}
-
-	std::cout << "Предупреждение: неизвестный приоритет \"" << priorityStr << "\". Используется приоритет по умолчанию.\n";
-	return Priority::NONE;
-}
-
-//Метод для парсинга строки с приоритетом
-Priority TaskManager::findPriority(string& input)
-{
-	Priority priority = Priority::NONE;
-
-	// Ищем флаг приоритета
-	size_t priorityFlagPos = input.find("--priority=");
-	if (priorityFlagPos != string::npos) 
+	bool swapped;
+	for (size_t i = 0; i < list.size(); ++i)
 	{
-		string priorityStr = input.substr(priorityFlagPos + 11); // 11 = длина "--priority="
-
-		// Отделяем приоритет от остальной строки
-		size_t spacePos = priorityStr.find(' ');
-		if (spacePos != string::npos)
-			priorityStr = priorityStr.substr(0, spacePos);
-
-		// Преобразуем строку в enum Priority
-		priority = stringToPriority(priorityStr);
-
-		// Удаляем флаг приоритета из заголовка
-		input = input.substr(0, priorityFlagPos);
-
-		// Удаляем возможные пробелы в конце
-		auto end = input.find_last_not_of(" \t\n\r");
-		if (end != string::npos) 
-			input = input.substr(0, end + 1);
+		swapped = false;
+		for (size_t j = 0; j < list.size() - i - 1; ++j)
+		{
+			if (list[j].priority < list[j + 1].priority) {
+				swap(list[j], list[j + 1]);
+				swapped = true;
+			}
+		}
+		if (!swapped) {
+			break;
+		}
 	}
-
-	return priority;
 }
 
 // Преобразование приоритета в строку
 string TaskManager::priorityToString(Priority priority) const {
-	switch (priority) 
+	switch (priority)
 	{
-		case Priority::LOW: 
-			return "низкий";
-		case Priority::MEDIUM: 
-			return "средний";
-		case Priority::HIGH: 
-			return "высокий";
-		case Priority::NONE: 
-			return "";
+	case Priority::LOW:
+		return "низкий";
+	case Priority::MEDIUM:
+		return "средний";
+	case Priority::HIGH:
+		return "высокий";
+	case Priority::NONE:
+		return "";
 	}
 	return "";
 }
@@ -146,15 +113,13 @@ void TaskManager::markComplete(const int& taskId)
 		return;
 	}
 
-	//Вариант, если задача уже выполнена
-	if (tasks[taskIndex].completed == true)
-	{
-		cout << "Задача номер " << taskId << " уже была выполнена.\n";
-		return;
-	}
 	//Отмечаем задачу как выполненную
-	tasks[taskIndex].completed = true;
-	cout << "Задача номер " << taskId << " выполнена.\n";
+	tasks[taskIndex].completed = !tasks[taskIndex].completed;
+
+	if (tasks[taskIndex].completed)
+		cout << "Задача номер " << taskId << " выполнена.\n";
+	else
+		cout << "Задача номер " << taskId << " не выполнена.\n";
 
 	this->printTasks("all");
 	this->saveList(AUTO_SAVE_NAME_FILE);
@@ -163,14 +128,12 @@ void TaskManager::markComplete(const int& taskId)
 }
 
 //Метод добавляющий задачу
-void TaskManager::addTask(string& title)
+void TaskManager::addTask(string& title, Priority& priority)
 {
 	//Создаем объект newTask, в который положим информацию о новой задаче
 	Task newTask;
 
-	//Парсинг приоритета
-	if (title.find("--priority=") != string::npos)
-		newTask.priority = this->findPriority(title); //Если попадем в функцию, то title отбросит часть, указывающую на приоритет, оставив только заголовок. А приоритет будет возращен.
+	newTask.priority = priority;
 
 	//Проверяем, написал ли пользователь задачу перед вводом
 	if (title.empty())
@@ -186,6 +149,29 @@ void TaskManager::addTask(string& title)
 	tasks.push_back(newTask);	//Добавление новой задачи в конец списка
 
 	cout << "Задача добавлена (ID: " << newTask.id << ")\n";
+
+	this->printTasks("all");
+	this->saveList(AUTO_SAVE_NAME_FILE);
+
+	return;
+}
+
+//Метод, который позволяет редактировать выбранную задачу
+void TaskManager::editTask(const int& taskId, const string& title, const Priority& priority)
+{
+	int taskIndex = findTaskIndex(taskId);
+
+	//cout << "Заголовок задачи номер " << taskId << " можно изменить.\n";
+	//getline(cin, tasks[taskIndex].title);
+
+	tasks[taskIndex].title = title;
+	tasks[taskIndex].priority = priority;
+
+	////Парсинг приоритета
+	//if (tasks[taskIndex].title.find("--priority=") != string::npos)
+	//	tasks[taskIndex].priority = findPriority(tasks[taskIndex].title); //Если попадем в функцию, то title отбросит часть, указывающую на приоритет, оставив только заголовок. А приоритет будет возращен.
+
+	cout << "Задача номер " << taskId << " изменена.\n";
 
 	this->printTasks("all");
 	this->saveList(AUTO_SAVE_NAME_FILE);
@@ -213,7 +199,7 @@ void TaskManager::findTask(const string& word)
 	{
 		lowWord = this->toLower(word);
 		lowTask = this->toLower(task.title);
-		if (lowTask.find(lowWord) != std::string::npos)
+		if (lowTask.find(lowWord) != string::npos)
 			wordFindTasks.push_back(task);
 	}
 
@@ -265,16 +251,20 @@ void TaskManager::printTasks(const string& status)
 	//Сортируем в соответствии со статусом
 	for (const auto& task : tasks)
 	{
-		if (status == "all" || (status == "completed" && task.completed))
+
+		if (status == "all" || status == "priority" || (status == "completed" && task.completed))
 			statusTasks.push_back(task);
-		else if (status == "all" || (status == "active" && !task.completed))
+		else if (status == "all" || status == "priority" || (status == "active" && !task.completed))
 			statusTasks.push_back(task);
 	}
+
+	if (status == "priority")
+		this->sortPriority(statusTasks);
 
 	//Проверяем, есть вообще задачи
 	if (statusTasks.empty() && status != "all")
 	{
-		if (status == "completed" || status == "active")
+		if (status == "completed" || status == "active" || status == "priority")
 			cout << "Нет задач со статусом " + status + ".\n";
 		else
 			cout << "Некорректная команда.\n";
@@ -302,7 +292,7 @@ void TaskManager::printTasks(const string& status)
 		cout << task.title;
 		cout << "  " << priorityToString(task.priority) << endl;
 	}
-	cout << "==================\n";
+	cout << "======================\n";
 
 	return;
 }
@@ -335,6 +325,7 @@ void TaskManager::removeTask(const int& taskId)
 	for (int i = 0; i < tasks.size(); i++)
 		tasks[i].id = i + 1;
 
+	this->printTasks("all");
 	this->saveList(AUTO_SAVE_NAME_FILE);
 
 	return;
@@ -382,21 +373,6 @@ void TaskManager::clearTask(const string& status)
 	return;
 }
 
-//Метод, который позволяет редактировать выбранную задачу
-void TaskManager::editTask(const int& taskId)
-{
-	int taskIndex = findTaskIndex(taskId);
-
-	cout << "Задачу номер " << taskId << " можно изменить.\n";
-	getline(cin, tasks[taskIndex].title);
-	cout << "Задачу номер " << taskId << " изменена.\n";
-
-	this->printTasks("all");
-	this->saveList(AUTO_SAVE_NAME_FILE);
-
-	return;
-}
-
 //Метод сохраняющий список задач
 void TaskManager::saveList(const string& nameFile)
 {
@@ -413,7 +389,8 @@ void TaskManager::saveList(const string& nameFile)
 				file << "[ ] ";
 
 			file << task.id << ". ";
-			file << task.title << endl;
+			file << task.title;
+			file << "  " << priorityToString(task.priority) << endl;
 		}
 	}
 
@@ -433,6 +410,8 @@ void TaskManager::loadList(const string& nameFile)
 
 	if (file.is_open())
 	{
+		string priority;
+
 		//Очистим объект, хранящий информацию о задачах
 		tasks = {};
 		nextId = 1;
@@ -457,6 +436,22 @@ void TaskManager::loadList(const string& nameFile)
 					break;
 				}
 			}
+
+			// Отделяем приоритет от остальной строки
+			size_t spacePos = loadTask.title.find("  ");
+			if (spacePos != string::npos)
+				priority = loadTask.title.substr(spacePos + 2);
+
+			// Преобразуем строку в enum Priority
+			loadTask.priority = stringToPriority(priority);
+
+			// Удаляем флаг приоритета из заголовка
+			loadTask.title = loadTask.title.substr(0, spacePos);
+
+			// Удаляем возможные пробелы в конце
+			auto end = loadTask.title.find_last_not_of(" \t\n\r");
+			if (end != string::npos)
+				loadTask.title = loadTask.title.substr(0, end + 1);
 
 			tasks.push_back(loadTask);
 			loadTask = {};

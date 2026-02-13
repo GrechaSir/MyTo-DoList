@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\MyTo-DoList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\MyTo-DoList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\task_manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\MyTo-DoList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\MyTo-DoList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\parsing.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\parsing.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\task_manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\task.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\parsing.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4C390D80-95EB-41F2-8660-4A9A0C6F2871}|MyTo-DoList\\MyTo-DoList.vcxproj|solutionrelative:MyTo-DoList\\parsing.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +34,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "parsing.cpp",
+              "DocumentMoniker": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\parsing.cpp",
+              "RelativeDocumentMoniker": "MyTo-DoList\\parsing.cpp",
+              "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\parsing.cpp",
+              "RelativeToolTip": "MyTo-DoList\\parsing.cpp",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAiwH8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-02-13T20:55:00.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "parsing.h",
+              "DocumentMoniker": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\parsing.h",
+              "RelativeDocumentMoniker": "MyTo-DoList\\parsing.h",
+              "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\parsing.h",
+              "RelativeToolTip": "MyTo-DoList\\parsing.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-02-13T20:54:58.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "task.h",
+              "DocumentMoniker": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task.h",
+              "RelativeDocumentMoniker": "MyTo-DoList\\task.h",
+              "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task.h",
+              "RelativeToolTip": "MyTo-DoList\\task.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-02-13T20:54:57.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "task_manager.h",
+              "DocumentMoniker": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.h",
+              "RelativeDocumentMoniker": "MyTo-DoList\\task_manager.h",
+              "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.h",
+              "RelativeToolTip": "MyTo-DoList\\task_manager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-02-13T20:54:55.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "task_manager.cpp",
               "DocumentMoniker": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.cpp",
               "RelativeDocumentMoniker": "MyTo-DoList\\task_manager.cpp",
               "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\task_manager.cpp",
               "RelativeToolTip": "MyTo-DoList\\task_manager.cpp",
-              "ViewState": "AgIAAMYBAAAAAAAAAAAAAEUAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAJEBAAAAAAAAAAAcwNMBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-11T16:19:14.807Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MyTo-DoList.cpp",
               "DocumentMoniker": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\MyTo-DoList.cpp",
               "RelativeDocumentMoniker": "MyTo-DoList\\MyTo-DoList.cpp",
               "ToolTip": "C:\\Users\\HYPERPC\\source\\repos\\GrechaSir\\MyTo-DoList\\MyTo-DoList\\MyTo-DoList.cpp",
               "RelativeToolTip": "MyTo-DoList\\MyTo-DoList.cpp",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAEYAAABpAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAuwGYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-02-11T16:15:47.896Z",
               "EditorCaption": ""
